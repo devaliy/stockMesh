@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Success</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .success-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        .check-draw {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 0.8s ease-out forwards 0.2s;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .float-subtle {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f8f9ff",
+                    "outline": "#6e7b6c",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container": "#e5eeff",
+                    "primary-fixed": "#7ffc97",
+                    "primary-container": "#00873a",
+                    "tertiary-fixed": "#eaddff",
+                    "on-tertiary-fixed": "#25005a",
+                    "secondary-container": "#316bf3",
+                    "on-surface": "#0b1c30",
+                    "outline-variant": "#bdcaba",
+                    "on-error": "#ffffff",
+                    "background": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface-variant": "#3e4a3d",
+                    "surface-bright": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-container-low": "#eff4ff",
+                    "on-primary-container": "#f7fff2",
+                    "surface-tint": "#006e2d",
+                    "primary": "#006b2c",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#62df7d",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-background": "#0b1c30",
+                    "tertiary-container": "#8a4cfc",
+                    "on-primary-fixed-variant": "#005320",
+                    "secondary-fixed": "#dbe1ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "tertiary": "#712ae2",
+                    "on-primary-fixed": "#002109",
+                    "on-secondary-fixed": "#00174b",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed-dim": "#62df7d",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "secondary": "#0051d5",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "margin-tablet": "24px",
+                    "margin-mobile": "16px",
+                    "touch-target-min": "48px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Shell - Suppressed for focus journey but adding placeholder branding for identity -->
+<header class="flex items-center justify-between px-margin-mobile w-full h-14 z-50 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">inventory_2</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">StockMesh</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-primary-fixed-dim/20 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-label-sm font-label-sm text-primary">Synced</span>
+</div>
+</header>
+<!-- Main Success Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-base relative overflow-hidden">
+<!-- Background Atmospheric Element -->
+<div class="absolute inset-0 pointer-events-none opacity-20 dark:opacity-10">
+
+</div>
+<!-- Success Graphic Cluster -->
+<div class="relative w-full max-w-md flex flex-col items-center text-center z-10">
+<div class="relative mb-10 float-subtle">
+<!-- Success Ring Pulse -->
+<div class="absolute inset-0 bg-primary-fixed-dim/30 rounded-full success-pulse scale-150"></div>
+<div class="absolute inset-0 bg-primary-fixed-dim/20 rounded-full success-pulse scale-125 delay-700"></div>
+<!-- Main Checkmark Container -->
+<div class="w-32 h-32 md:w-40 md:h-40 bg-primary rounded-full flex items-center justify-center shadow-xl relative z-10">
+<svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 52 52">
+<path class="check-draw" d="M14 27l7 7 16-16"></path>
+</svg>
+</div>
+<!-- Particle Accents -->
+<div class="absolute -top-4 -right-2 w-4 h-4 bg-primary-fixed rounded-full opacity-60"></div>
+<div class="absolute bottom-2 -left-6 w-6 h-6 bg-secondary-fixed-dim rounded-full opacity-40"></div>
+<div class="absolute -bottom-8 right-10 w-3 h-3 bg-tertiary-fixed rounded-full opacity-50"></div>
+</div>
+<!-- Typography Content -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface font-bold tracking-tight mb-4">
+                Stock Updated Successfully
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[320px] mx-auto mb-12">
+                The changes have been saved to your local database and will sync with other devices instantly.
+            </p>
+<!-- Card: Transaction Summary -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 mb-12 shadow-sm text-left">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-widest">Update Receipt</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">#TRX-882190</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional, high-fidelity close-up product photo of a sleek, black wireless scanner with emerald green light indicators. The studio lighting is soft and neutral, emphasizing the industrial minimalist design of StockMesh hardware. The aesthetic is clean, corporate modern, and highly technical." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKK5BUnOsQGtnGkNegAJYmmAHKep7HRI9kiVxXYov6T280Ys4WNDnF3rHtZ5DRrApnahtbifHStPJf2OA0WaI1ImFINazicXio4Byz_AY6nS16Z96tdvdumlIAnSGR7Oz3vVlLap4Mg9DW5MmzirEtMrg2FTA4hMFnVzLbg2M06yYUAxxv1iCxWulrfJHlJF6-D3BSyIMbr1zfbExPTcr8waZ4s5yvuAXgF5lq_vZERJlT49_CoCP3"/>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface leading-tight">Wireless Scanner V3</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">SKU: WSCN-001</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-primary">+12 Units</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Warehouse A</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="w-full flex flex-col gap-3">
+<button class="w-full h-[56px] bg-primary text-white font-title-md text-title-md rounded-xl shadow-lg shadow-primary/20 hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">dashboard</span>
+                    Back to Dashboard
+                </button>
+<button class="w-full h-[56px] border border-outline-variant text-on-surface-variant font-title-md text-title-md rounded-xl hover:bg-surface-container-low transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">print</span>
+                    Print Label
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer Connectivity Ribbon -->
+<footer class="h-10 bg-surface-container-lowest border-t border-outline-variant/10 flex items-center justify-center px-margin-mobile">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,107,44,0.5)]"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-tighter">System fully synced with Cloud Node 04</span>
+</div>
+</footer>
+<!-- Success Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle parallax for the success card
+            const card = document.querySelector('.bg-surface-container-lowest');
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+                card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            // Re-draw checkmark on click for flair
+            const checkIcon = document.querySelector('.check-draw');
+            document.querySelector('.w-32').addEventListener('click', () => {
+                checkIcon.style.animation = 'none';
+                void checkIcon.offsetWidth; // trigger reflow
+                checkIcon.style.animation = 'draw 0.8s ease-out forwards';
+            });
+        });
+    </script>
+</body></html>

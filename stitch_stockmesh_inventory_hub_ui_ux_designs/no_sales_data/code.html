@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .empty-state-canvas {
+            min-height: calc(100vh - 56px - 72px); /* Subtract TopAppBar and BottomNavBar approx heights */
+        }
+        .illustration-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f8f9ff",
+                      "outline": "#6e7b6c",
+                      "tertiary-fixed-dim": "#d2bbff",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-container": "#e5eeff",
+                      "primary-fixed": "#7ffc97",
+                      "primary-container": "#00873a",
+                      "tertiary-fixed": "#eaddff",
+                      "on-tertiary-fixed": "#25005a",
+                      "secondary-container": "#316bf3",
+                      "on-surface": "#0b1c30",
+                      "outline-variant": "#bdcaba",
+                      "on-error": "#ffffff",
+                      "background": "#f8f9ff",
+                      "surface-variant": "#d3e4fe",
+                      "on-surface-variant": "#3e4a3d",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary-container": "#f7fff2",
+                      "surface-tint": "#006e2d",
+                      "primary": "#006b2c",
+                      "on-tertiary-fixed-variant": "#5a00c6",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#62df7d",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-background": "#0b1c30",
+                      "tertiary-container": "#8a4cfc",
+                      "on-primary-fixed-variant": "#005320",
+                      "secondary-fixed": "#dbe1ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary": "#712ae2",
+                      "on-primary-fixed": "#002109",
+                      "on-secondary-fixed": "#00174b",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#fefcff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#62df7d",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "secondary": "#0051d5",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#213145"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "margin-tablet": "24px",
+                      "margin-mobile": "16px",
+                      "touch-target-min": "48px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "title-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm flex items-center justify-between px-margin-mobile w-full h-14 z-50 fixed top-0 left-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style="font-size: 24px;">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">StockMesh</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">sync</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-xs">
+                JD
+            </div>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="flex-grow pt-14 pb-20 px-margin-mobile flex flex-col items-center justify-center empty-state-canvas relative overflow-hidden">
+<!-- Decorative Ambient Background Gradient -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-tertiary/10 blur-3xl rounded-full"></div>
+<div class="absolute -bottom-24 -left-24 w-80 h-80 bg-secondary/5 blur-3xl rounded-full"></div>
+</div>
+<!-- Empty State Container -->
+<div class="z-10 w-full max-w-md flex flex-col items-center text-center space-y-8">
+<!-- Illustration Area: Bento-inspired modern clipboard illustration -->
+<div class="relative w-full aspect-square max-w-[280px] illustration-float">
+<!-- Main Illustration Image -->
+<div class="w-full h-full rounded-3xl overflow-hidden shadow-lg border border-outline-variant/30 glass-panel p-6 flex items-center justify-center">
+<div class="relative w-full h-full bg-surface-container-low rounded-2xl flex flex-col items-center justify-center border border-dashed border-tertiary-container/40">
+<!-- Visual Clipboard/Storefront Metaphor -->
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[120px] text-tertiary/20" style="font-variation-settings: 'wght' 100;">analytics</span>
+</div>
+<!-- Detailed Image via Placeholder -->
+<div class="absolute inset-0 rounded-2xl overflow-hidden opacity-90">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist 3D isometric illustration of a digital clipboard resting on a polished white marble surface. The clipboard features a sleek purple accent color at the top clip and soft, glowing translucent glass graphs that are currently empty. The overall style is corporate modernism with high-fidelity lighting, soft shadows, and a bright, airy professional atmosphere using a palette of white, lavender, and emerald green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaaQ00mt0_QH2SlZ33FJht9kf5YKsGespc8AoO9c8mMq9L0qjj_knd2QBxzuL-keuDKHaW7j-IJZ46mFo2phjolx-y6NMvV0dKfKKIo4pBoC7KQ1cnmt8qebTfdvL5z808fyD664gR0aQ4PBQOkaWOu-T-OqlFu8reYOsaXQssNSQoKbeV7FbkRU-oag-IhdtAcvw0VAc8kHVEBABLt1h94Lna7GsH9_E6A79QvQUkO2yWnS6OSoqy"/>
+</div>
+</div>
+</div>
+<!-- Floating Decorative Icons -->
+<div class="absolute -top-4 -right-4 w-14 h-14 bg-white shadow-md rounded-2xl flex items-center justify-center border border-surface-container text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+</div>
+<div class="absolute bottom-10 -left-6 w-12 h-12 bg-white shadow-md rounded-full flex items-center justify-center border border-surface-container text-secondary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-3 px-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold">No sales recorded yet</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[320px] mx-auto">
+                    Once you start selling products, your revenue and trends will appear here in real-time.
+                </p>
+</div>
+<!-- Action Button -->
+<div class="w-full px-8">
+<button class="w-full bg-[#10b981] hover:bg-[#059669] text-white font-bold h-14 rounded-xl shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[24px]">point_of_sale</span>
+<span>Start Selling</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">chevron_right</span>
+</button>
+</div>
+<!-- Connectivity Ribbon (Minor Contextual Indicator) -->
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-high/50 rounded-full border border-outline-variant/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Cloud Synced</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-2 pb-safe bg-surface dark:bg-surface-dim shadow-[0_-1px_3px_rgba(0,0,0,0.05)] rounded-t-xl">
+<!-- Dashboard -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:bg-surface-variant dark:hover:bg-inverse-surface active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<!-- Products -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:bg-surface-variant dark:hover:bg-inverse-surface active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">inventory</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<!-- Sell -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:bg-surface-variant dark:hover:bg-inverse-surface active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</a>
+<!-- Reports (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-5 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-2 hover:bg-surface-variant dark:hover:bg-inverse-surface active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the "Start Selling" button
+        document.querySelector('button').addEventListener('click', function() {
+            this.classList.add('ring-4', 'ring-primary/20');
+            setTimeout(() => this.classList.remove('ring-4', 'ring-primary/20'), 200);
+        });
+
+        // Offline simulation indicator cycle (aesthetic only)
+        const syncIcon = document.querySelector('header .material-symbols-outlined');
+        setInterval(() => {
+            syncIcon.style.transition = 'transform 0.5s ease';
+            syncIcon.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                syncIcon.style.transform = 'rotate(360deg)';
+                setTimeout(() => {
+                    syncIcon.style.transition = 'none';
+                    syncIcon.style.transform = 'rotate(0deg)';
+                }, 500);
+            }, 500);
+        }, 8000);
+    </script>
+</body></html>

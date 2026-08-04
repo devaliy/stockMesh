@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Connected Devices</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-primary-fixed": "#002109",
+                    "inverse-primary": "#62df7d",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#7ffc97",
+                    "surface-tint": "#006e2d",
+                    "primary-fixed-dim": "#62df7d",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-low": "#eff4ff",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bdcaba",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "tertiary": "#712ae2",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#8a4cfc",
+                    "surface-container-highest": "#d3e4fe",
+                    "secondary": "#0051d5",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-variant": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#006b2c",
+                    "secondary-fixed": "#dbe1ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary-fixed": "#eaddff",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed": "#00174b",
+                    "primary-container": "#00873a",
+                    "outline": "#6e7b6c",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-primary-container": "#f7fff2",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-container": "#fefcff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface": "#0b1c30",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target-min": "48px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "margin-tablet": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .card-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface shadow-sm w-full sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-touch-target-min">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Connected Devices</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="cloud_done">cloud_done</span>
+<button class="active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6 max-w-4xl mx-auto">
+<!-- Local Mode Ribbon (Offline-First Messaging) -->
+<div class="flex items-center justify-between bg-surface-container p-4 rounded-xl card-shadow border border-outline-variant/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="wifi_tethering" style="font-variation-settings: 'FILL' 1;">wifi_tethering</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Local Network Active</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Scanning for 4 peer devices</p>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-label-sm text-label-sm hover:bg-opacity-90 transition-colors">
+                Refresh
+            </button>
+</div>
+<!-- Devices List -->
+<div class="space-y-4">
+<!-- Main Register (Host) -->
+<div class="bg-surface p-5 rounded-xl card-shadow border border-outline-variant/20 relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="computer">computer</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-title-md text-title-md text-on-surface">Main Register (Host)</h3>
+<span class="bg-secondary text-on-secondary px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider">HUB</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">ID: 8842-SM-HOST</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-primary status-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Online</span>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-90" onclick="toggleMenu('menu1')">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="signal_cellular_4_bar">signal_cellular_4_bar</span>
+<span class="font-label-sm text-label-sm">Strong</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="update">update</span>
+<span class="font-label-sm text-label-sm">Synced 1m ago</span>
+</div>
+</div>
+</div>
+<!-- Hidden Sub-menu -->
+<div class="hidden absolute top-12 right-6 bg-surface shadow-lg rounded-lg border border-outline-variant z-10 py-2 min-w-[140px]" id="menu1">
+<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high font-label-sm text-label-sm">View Logs</button>
+<button class="w-full text-left px-4 py-2 hover:bg-error-container text-error font-label-sm text-label-sm">Remove</button>
+</div>
+</div>
+<!-- Warehouse Scanner 1 -->
+<div class="bg-surface p-5 rounded-xl card-shadow border border-outline-variant/20 relative group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="barcode_scanner">barcode_scanner</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Warehouse Scanner 1</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Role: Inventory Audit</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-primary status-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Online</span>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-90" onclick="toggleMenu('menu2')">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" data-icon="signal_cellular_alt_2_bar">signal_cellular_alt_2_bar</span>
+<span class="font-label-sm text-label-sm">Medium</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="battery_full">battery_full</span>
+<span class="font-label-sm text-label-sm">88%</span>
+</div>
+</div>
+</div>
+<div class="hidden absolute top-12 right-6 bg-surface shadow-lg rounded-lg border border-outline-variant z-10 py-2 min-w-[140px]" id="menu2">
+<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high font-label-sm text-label-sm">Remote Ping</button>
+<button class="w-full text-left px-4 py-2 hover:bg-error-container text-error font-label-sm text-label-sm">Remove</button>
+</div>
+</div>
+<!-- Floor Tablet -->
+<div class="bg-surface p-5 rounded-xl card-shadow border border-outline-variant/20 relative opacity-80 transition-opacity hover:opacity-100 group">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-3xl" data-icon="tablet">tablet</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Floor Tablet</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Role: Customer Inquiry</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 bg-surface-container-highest text-on-surface-variant px-2 py-1 rounded-lg">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Offline</span>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-90" onclick="toggleMenu('menu3')">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-error" data-icon="signal_cellular_0_bar">signal_cellular_0_bar</span>
+<span class="font-label-sm text-label-sm">No Connection</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">Last seen 4h ago</span>
+</div>
+</div>
+</div>
+<div class="hidden absolute top-12 right-6 bg-surface shadow-lg rounded-lg border border-outline-variant z-10 py-2 min-w-[140px]" id="menu3">
+<button class="w-full text-left px-4 py-2 hover:bg-surface-container-high font-label-sm text-label-sm">Wake Up</button>
+<button class="w-full text-left px-4 py-2 hover:bg-error-container text-error font-label-sm text-label-sm">Remove</button>
+</div>
+</div>
+</div>
+<!-- Add New Device CTA (Bento style card) -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl border-2 border-dashed border-primary/20 flex flex-col items-center justify-center text-center gap-3 active:bg-primary-container/5 transition-all cursor-pointer">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-4xl" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Link New Device</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px]">Scan the QR code on another terminal to add it to this local mesh.</p>
+</div>
+</main>
+<!-- Contextual FAB (Only on relevant screens) -->
+<button class="fixed right-6 bottom-24 w-16 h-16 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface shadow-[0px_-1px_3px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<!-- Settings Active -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        function toggleMenu(id) {
+            const menu = document.getElementById(id);
+            const allMenus = document.querySelectorAll('[id^="menu"]');
+            
+            allMenus.forEach(m => {
+                if (m.id !== id) m.classList.add('hidden');
+            });
+            
+            menu.classList.toggle('hidden');
+            
+            // Close on outside click
+            const closeMenu = (e) => {
+                if (!menu.contains(e.target) && !e.target.closest('button')) {
+                    menu.classList.add('hidden');
+                    document.removeEventListener('click', closeMenu);
+                }
+            };
+            
+            if (!menu.classList.contains('hidden')) {
+                setTimeout(() => document.addEventListener('click', closeMenu), 10);
+            }
+        }
+
+        // Simulating Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                if (!el.classList.contains('active:scale-90') && !el.classList.contains('active:scale-95')) {
+                    el.style.transform = 'scale(0.98)';
+                }
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

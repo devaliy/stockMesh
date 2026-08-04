@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Global Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#00174b",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed": "#dbe1ff",
+                        "surface-container": "#e5eeff",
+                        "primary-fixed": "#7ffc97",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface-variant": "#3e4a3d",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#8a4cfc",
+                        "inverse-primary": "#62df7d",
+                        "primary-container": "#00873a",
+                        "on-tertiary-fixed": "#25005a",
+                        "outline-variant": "#bdcaba",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-container": "#fefcff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container-low": "#eff4ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#006b2c",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed": "#002109",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "secondary-container": "#316bf3",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-background": "#0b1c30",
+                        "tertiary-fixed": "#eaddff",
+                        "surface-tint": "#006e2d",
+                        "secondary": "#0051d5",
+                        "inverse-on-surface": "#eaf1ff",
+                        "inverse-surface": "#213145",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-bright": "#f8f9ff",
+                        "outline": "#6e7b6c",
+                        "on-error": "#ffffff",
+                        "tertiary": "#712ae2",
+                        "on-primary-container": "#f7fff2",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-tablet": "24px",
+                        "touch-target-min": "48px",
+                        "gutter": "16px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top AppBar (Simplified for Search Context) -->
+<header class="bg-surface sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-14 w-full shadow-sm">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary active:scale-95 duration-100 transition-colors p-2 hover:bg-surface-container rounded-full" onclick="window.history.back()">
+                arrow_back
+            </button>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Search</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant p-2">
+            more_vert
+        </button>
+</header>
+<main class="px-margin-mobile pt-4 max-w-4xl mx-auto">
+<!-- Prominent Search Input -->
+<div class="relative group mb-8">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-12 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary text-title-md font-title-md placeholder:text-outline-variant transition-all shadow-sm" id="main-search-input" placeholder="Search products, SKUs, or categories..." type="text"/>
+<div class="absolute inset-y-0 right-4 flex items-center">
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors" onclick="document.getElementById('main-search-input').value = ''">
+                    close
+                </button>
+</div>
+</div>
+<!-- Initial View (Suggestions) -->
+<div class="space-y-8 animate-fade-in" id="search-suggestions">
+<!-- Recent Searches -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-title-md text-title-md text-on-surface">Recent Searches</h3>
+<button class="text-label-sm font-label-sm text-primary uppercase tracking-wider">Clear All</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="font-body-md text-body-md">Logitech Mouse</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="font-body-md text-body-md">SKU-29384</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high rounded-full hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="font-body-md text-body-md">Office Supplies</span>
+</button>
+</div>
+</section>
+<!-- Categories (Bento-ish Grid) -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface mb-4">Categories</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="p-4 bg-primary-container text-on-primary-container rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">devices</span>
+<span class="font-label-sm text-label-sm">Electronics</span>
+</div>
+<div class="p-4 bg-secondary-container text-on-secondary-container rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">local_grocery_store</span>
+<span class="font-label-sm text-label-sm">Groceries</span>
+</div>
+<div class="p-4 bg-tertiary-container text-on-tertiary-container rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">home_repair_service</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</div>
+<div class="p-4 bg-surface-container-highest text-on-surface rounded-xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl">category</span>
+<span class="font-label-sm text-label-sm">All Items</span>
+</div>
+</div>
+</section>
+<!-- Frequent Products -->
+<section>
+<h3 class="font-title-md text-title-md text-on-surface mb-4">Frequent Products</h3>
+<div class="space-y-3">
+<!-- Product Card -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro professional photograph of a sleek silver mechanical keyboard with high-key lighting and a clean tech aesthetic, set against a soft emerald green background. The image is crisp, modern, and highlights precision engineering in a minimalist warehouse setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOtefm5g1fSYlgepF1zm-eR6--8b79AIpr4LrfSkcaXFtGUp4sSt_xBlBl9bmtqBqQD3PjTPJqTw2IJd9y5wGnfdiVRfSuQBebhbA-UZSrycQbU11NUS5oRdey7SL1_-UJUxiO9-6L7wcVC-okEAwwh6Aq9Q_xwDW3ungrGYPRAMpkXuyIoBLP2IOOX0VO-91qtDkpa2HeMqIJRb5A7lCyvJMoPauf1OKtnY41ogSwjQpuS5fRH6tm"/>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface">Mechanical Keyboard G-Pro</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Electronics • SKU-1029</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-primary">82 Units</p>
+<div class="flex items-center justify-end gap-1 text-[10px] text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Synced</span>
+</div>
+</div>
+</div>
+<!-- Product Card -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean product shot of an ergonomic vertical mouse on a white desk, with soft shadows and a professional, industrial design look. The color palette features slate blues and emerald green accents, reflecting a high-performance retail inventory environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ6UAVTNF-ZC_u81D-HCXxSjP5lMLNpVQDBDwASYavFTYJ60dBFHVRdFo7PZRgIEXs4dDshugVgtMF_2GukEWmi9Hxpp-tPxWY2tz6xx6B6qeVjZPNB-ApCJXlOzirUUYNjMMBCcM94aMglKTKvDirgZB0O1VKnune5xOod5Mdr6dKSHX9lIyABy4F-aPxG1uFQ_rmwp_pTPD5uoAptH82VfInI54Pt7b-zCKvVCCALy0A971nyiSg"/>
+</div>
+<div class="flex-1">
+<p class="font-title-md text-title-md text-on-surface">Ergonomic Mouse XL</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Electronics • SKU-4412</p>
+</div>
+<div class="text-right">
+<p class="font-title-md text-title-md text-primary">156 Units</p>
+<div class="flex items-center justify-end gap-1 text-[10px] text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Synced</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Search Results (Hidden by default, shown via JS) -->
+<div class="hidden space-y-4 animate-fade-in" id="search-results">
+<div class="flex items-center justify-between">
+<p class="font-body-md text-body-md text-on-surface-variant"><span id="result-count">3</span> results found</p>
+<button class="flex items-center gap-1 font-label-sm text-label-sm text-primary">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Filter</span>
+</button>
+</div>
+<div class="space-y-3" id="results-container">
+<!-- Dynamically populated results would go here -->
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Execution from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-2 bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<!-- Micro-interaction Script for Search Simulation -->
+<script>
+        const searchInput = document.getElementById('main-search-input');
+        const suggestionsView = document.getElementById('search-suggestions');
+        const resultsView = document.getElementById('search-results');
+        const resultsContainer = document.getElementById('results-container');
+        const resultCountSpan = document.getElementById('result-count');
+
+        const mockData = [
+            { name: "Pro Scanner 5000", sku: "SCN-5000", cat: "Hardware", qty: 24, sync: true },
+            { name: "Bluetooth Label Printer", sku: "LBL-PRNT", cat: "Warehouse Tools", qty: 12, sync: true },
+            { name: "High-Visibility Vest (L)", sku: "PPE-VEST-L", cat: "Safety", qty: 45, sync: false },
+            { name: "Pallet Jack - Heavy Duty", sku: "PLT-JK-02", cat: "Machinery", qty: 3, sync: true }
+        ];
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            
+            if (query.length > 0) {
+                suggestionsView.classList.add('hidden');
+                resultsView.classList.remove('hidden');
+                
+                const filtered = mockData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.sku.toLowerCase().includes(query)
+                );
+                
+                renderResults(filtered);
+            } else {
+                suggestionsView.classList.remove('hidden');
+                resultsView.classList.add('hidden');
+            }
+        });
+
+        function renderResults(results) {
+            resultCountSpan.innerText = results.length;
+            resultsContainer.innerHTML = results.map(item => `
+                <div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant hover:border-primary transition-all cursor-pointer animate-fade-in">
+                    <div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">${item.cat === 'Hardware' ? 'laptop_mac' : item.cat === 'Safety' ? 'security' : 'inventory'}</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="font-title-md text-title-md text-on-surface">${item.name}</p>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant">${item.cat} • ${item.sku}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-title-md text-title-md text-primary">${item.qty} Units</p>
+                        <div class="flex items-center justify-end gap-1 text-[10px] ${item.sync ? 'text-primary' : 'text-error'}">
+                            <span class="w-2 h-2 rounded-full ${item.sync ? 'bg-primary' : 'bg-error'}"></span>
+                            <span>${item.sync ? 'Synced' : 'Pending'}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-20 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-6xl mb-4 opacity-20">search_off</span>
+                        <p class="font-title-md text-title-md">No items found matching your search</p>
+                        <p class="font-body-md text-body-md">Try searching for a different keyword or SKU</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body></html>

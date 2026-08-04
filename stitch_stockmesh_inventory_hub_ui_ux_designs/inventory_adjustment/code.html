@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inventory Adjustment | StockMesh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #bdcaba;
+      border-radius: 10px;
+    }
+    .thumb-zone {
+      padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #006b2c !important;
+      box-shadow: 0 0 0 2px rgba(0, 107, 44, 0.1);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed": "#00174b",
+            "surface-container-highest": "#d3e4fe",
+            "secondary-fixed": "#dbe1ff",
+            "surface-container": "#e5eeff",
+            "primary-fixed": "#7ffc97",
+            "on-tertiary-container": "#fffbff",
+            "on-surface-variant": "#3e4a3d",
+            "surface-dim": "#cbdbf5",
+            "tertiary-container": "#8a4cfc",
+            "inverse-primary": "#62df7d",
+            "primary-container": "#00873a",
+            "on-tertiary-fixed": "#25005a",
+            "outline-variant": "#bdcaba",
+            "on-surface": "#0b1c30",
+            "on-secondary-container": "#fefcff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "tertiary-fixed-dim": "#d2bbff",
+            "surface-container-low": "#eff4ff",
+            "error-container": "#ffdad6",
+            "primary": "#006b2c",
+            "on-secondary": "#ffffff",
+            "surface": "#f8f9ff",
+            "error": "#ba1a1a",
+            "surface-variant": "#d3e4fe",
+            "on-primary-fixed": "#002109",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "secondary-container": "#316bf3",
+            "on-primary-fixed-variant": "#005320",
+            "on-background": "#0b1c30",
+            "tertiary-fixed": "#eaddff",
+            "surface-tint": "#006e2d",
+            "secondary": "#0051d5",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-surface": "#213145",
+            "primary-fixed-dim": "#62df7d",
+            "on-tertiary-fixed-variant": "#5a00c6",
+            "surface-bright": "#f8f9ff",
+            "outline": "#6e7b6c",
+            "on-error": "#ffffff",
+            "tertiary": "#712ae2",
+            "on-primary-container": "#f7fff2",
+            "surface-container-high": "#dce9ff",
+            "background": "#f8f9ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "margin-tablet": "24px",
+            "touch-target-min": "48px",
+            "gutter": "16px",
+            "base": "8px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "title-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased custom-scrollbar overflow-x-hidden">
+<!-- Top Navigation (Shell Implementation) -->
+<header class="bg-surface shadow-sm sticky top-0 z-50 flex justify-between items-center px-margin-mobile h-14 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">StockMesh</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="sync">sync</span>
+</button>
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse" title="Online"></div>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-margin-mobile py-6 flex flex-col gap-6">
+<!-- Context Header: Product Information -->
+<section class="bg-surface-container-low rounded-xl p-5 border border-outline-variant/30 flex items-center gap-4 relative overflow-hidden group">
+<div class="absolute top-4 right-4 flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[12px] fill" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+        Synced
+      </div>
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container-highest shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close-up professional product shot of an industrial mechanical part, a heavy-duty chrome ball bearing resting on a dark slate surface. The lighting is crisp and cool, highlighting the metallic textures and precision engineering. The background is a blurred warehouse shelf with organized emerald green storage bins, reinforcing a sense of high-tech inventory management and operational excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLPhFkzCP0E4yI_4gdTwt4ZuN2lV2kzxz1s-3HTgwv9PsPIvTlVCIS1OBrWGEdOPjXIF6K6cGEVo50ZqLnkD4dKVFSsLKv5kCykMw-WhpRWvdCcNQKd0EGRPWHaAvo61sxgRBIYunOFNLbx18jTkV_YH5VJw6PPVD7pNVMRS9SJjLaD7ORzkDEAohAkX88edS9-7_rslJCoqg2XvrQEowGJ7kYl7oa1FWdT8xiiLjGyFTYSRJfAlmn"/>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-widest">SKU: SM-90234-LX</span>
+<h2 class="font-title-md text-title-md text-on-surface leading-tight">Heavy-Duty Precision Bearing</h2>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Current Stock</span>
+<span class="text-xl font-bold text-primary">482 <small class="text-xs font-medium text-outline">units</small></span>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase">Location</span>
+<span class="text-sm font-medium">Shelf A-12, Bin 4</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Barcode Scan Shortcut -->
+<button class="bg-surface-container-high hover:bg-surface-container-highest transition-all active:scale-[0.98] rounded-xl p-4 flex items-center justify-between border border-outline-variant/50 group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="barcode_scanner">barcode_scanner</span>
+</div>
+<div class="text-left">
+<p class="font-bold text-sm">Verify with Scanner</p>
+<p class="text-xs text-on-surface-variant">Confirm product before adjustment</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Adjustment Form -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm flex flex-col gap-8">
+<!-- Adjustment Type Selector -->
+<div class="flex flex-col gap-3">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-bold">Adjustment Type</label>
+<div class="grid grid-cols-2 gap-3 p-1 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<button class="flex items-center justify-center gap-2 py-3 rounded-md transition-all duration-200 font-bold bg-primary-container text-on-primary-container shadow-sm" id="btn-increase" onclick="setType('increase')">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+            Increase
+          </button>
+<button class="flex items-center justify-center gap-2 py-3 rounded-md transition-all duration-200 font-bold text-on-surface-variant hover:bg-surface-container" id="btn-decrease" onclick="setType('decrease')">
+<span class="material-symbols-outlined" data-icon="do_not_disturb_on">do_not_disturb_on</span>
+            Decrease
+          </button>
+</div>
+</div>
+<!-- Quantity Field -->
+<div class="flex flex-col gap-3">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-bold">Adjustment Quantity</label>
+<div class="relative flex items-center h-16 w-full">
+<button class="absolute left-2 w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high active:scale-90 transition-all" onclick="changeQty(-1)">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<input class="w-full h-full bg-surface text-center font-bold text-2xl rounded-xl border-outline-variant focus:border-primary transition-all" id="qty-input" min="1" type="number" value="1"/>
+<button class="absolute right-2 w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container-high active:scale-90 transition-all" onclick="changeQty(1)">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Reason Selector -->
+<div class="flex flex-col gap-3">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-bold">Reason for Adjustment</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input class="hidden" name="reason" type="radio" value="Damaged"/>
+<span class="material-symbols-outlined text-sm" data-icon="broken_image">broken_image</span>
+<span class="text-sm font-medium">Damaged</span>
+</label>
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input class="hidden" name="reason" type="radio" value="Found"/>
+<span class="material-symbols-outlined text-sm" data-icon="search_check">search_check</span>
+<span class="text-sm font-medium">Found</span>
+</label>
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input class="hidden" name="reason" type="radio" value="Expired"/>
+<span class="material-symbols-outlined text-sm" data-icon="event_busy">event_busy</span>
+<span class="text-sm font-medium">Expired</span>
+</label>
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input class="hidden" name="reason" type="radio" value="Return"/>
+<span class="material-symbols-outlined text-sm" data-icon="assignment_return">assignment_return</span>
+<span class="text-sm font-medium">Return</span>
+</label>
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input checked="" class="hidden" name="reason" type="radio" value="Correction"/>
+<span class="material-symbols-outlined text-sm" data-icon="edit_square">edit_square</span>
+<span class="text-sm font-medium">Correction</span>
+</label>
+<label class="relative flex items-center justify-center gap-2 px-3 py-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low has-[:checked]:bg-secondary-fixed has-[:checked]:border-secondary transition-all">
+<input class="hidden" name="reason" type="radio" value="Other"/>
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+<span class="text-sm font-medium">Other</span>
+</label>
+</div>
+</div>
+<!-- Notes Field -->
+<div class="flex flex-col gap-3">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-bold">Notes</label>
+<textarea class="w-full p-4 bg-surface rounded-xl border border-outline-variant min-h-[120px] resize-none text-on-surface focus:ring-0 transition-all" placeholder="Provide additional context for this adjustment..."></textarea>
+</div>
+<!-- Submit Action -->
+<button class="h-[56px] w-full bg-primary text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+        Confirm Adjustment
+      </button>
+</div>
+<!-- Help / Footer Info -->
+<div class="flex items-start gap-3 p-4 bg-surface-container-low rounded-xl border-l-4 border-primary/40">
+<span class="material-symbols-outlined text-primary text-lg mt-0.5" data-icon="info">info</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+        This adjustment will be logged under your user profile (Operator #420). Changes are reflected in the global database immediately upon synchronization. To undo, a corrective adjustment must be created.
+      </p>
+</div>
+</main>
+<div class="h-32"></div> <!-- Spacer for fixed nav -->
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-2 bg-surface-container-low border-t border-outline-variant shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 shadow-sm transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+    function changeQty(amount) {
+      const input = document.getElementById('qty-input');
+      const newVal = parseInt(input.value) + amount;
+      if (newVal >= 1) input.value = newVal;
+    }
+
+    function setType(type) {
+      const incBtn = document.getElementById('btn-increase');
+      const decBtn = document.getElementById('btn-decrease');
+      const activeClass = ['bg-primary-container', 'text-on-primary-container', 'shadow-sm'];
+      const inactiveClass = ['text-on-surface-variant', 'hover:bg-surface-container'];
+
+      if (type === 'increase') {
+        incBtn.classList.add(...activeClass);
+        incBtn.classList.remove(...inactiveClass);
+        decBtn.classList.remove(...activeClass);
+        decBtn.classList.add(...inactiveClass);
+      } else {
+        decBtn.classList.add(...activeClass);
+        decBtn.classList.remove(...inactiveClass);
+        incBtn.classList.remove(...activeClass);
+        incBtn.classList.add(...inactiveClass);
+      }
+    }
+  </script>
+</body></html>

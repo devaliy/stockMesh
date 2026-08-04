@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Receive Stock | StockMesh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "primary": "#006b2c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-tint": "#006e2d",
+                        "outline-variant": "#bdcaba",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-container": "#fffbff",
+                        "on-error": "#ffffff",
+                        "background": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#712ae2",
+                        "inverse-primary": "#62df7d",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed": "#dbe1ff",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-container": "#e5eeff",
+                        "inverse-surface": "#213145",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#8a4cfc",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-container": "#f7fff2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed-variant": "#005320",
+                        "tertiary-fixed": "#eaddff",
+                        "primary-fixed-dim": "#62df7d",
+                        "outline": "#6e7b6c",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#7ffc97",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-primary-fixed": "#002109",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-secondary-container": "#fefcff",
+                        "secondary": "#0051d5",
+                        "on-secondary-fixed": "#00174b",
+                        "primary-container": "#00873a",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-container-low": "#eff4ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "base": "8px",
+                        "margin-tablet": "24px",
+                        "touch-target-min": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .noscrollbar::-webkit-scrollbar { display: none; }
+        .noscrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Custom quantity input styling */
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .quantity-input { -moz-appearance: textfield; }
+        
+        /* Active interaction for touch */
+        .touch-active:active { transform: scale(0.98); transition: transform 0.1s ease; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface flex justify-between items-center px-margin-mobile h-touch-target-min w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors rounded-full p-2 active:scale-95 duration-150 ease-in-out" data-icon="close">close</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Receive Stock</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="sync" style="font-variation-settings: 'FILL' 0;">sync</span>
+<span class="font-label-sm text-label-sm text-primary">SYNCED</span>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-margin-mobile pt-6 space-y-6">
+<!-- Product Context Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-5 rounded-xl flex items-center gap-4 shadow-sm">
+<div class="w-16 h-16 rounded-lg bg-surface-container-high flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional product photography of a high-end industrial mechanical part sitting on a clean, white reflective surface. The lighting is crisp and bright, highlighting the polished emerald green metallic finish of the part. The overall aesthetic is clean, corporate modernist, and precise, matching a professional inventory management software style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKSWcGRdDoTaWKUwLdixkr67URZA03e0aUEzzLafduSF4_KJhoM09ZltNO-5pxuqCWAszfC_RYqD62v6F8G2vGJ_rGyea7L7FBBiEs_rNtmBkW-ypn0c1Lfpnr7dzsNymx9ofZ2BBVackKtq34FlMyA82mXUSQHmP5QbYAeXjLF_enL_5TlooFwQgNCSUYLA5jyIBAeiRrCJqjEreFXOiJhVSRZPD5AECS8uDTYcLQFXCv9lUCywLV"/>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">SKU: SM-4920-X1</p>
+<h2 class="font-title-md text-title-md text-on-surface">Industrial Flux Cap (Gen 4)</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<p class="font-body-md text-sm text-on-surface-variant">In Stock: 142 units</p>
+</div>
+</div>
+</div>
+<!-- Main Form -->
+<div class="space-y-8">
+<!-- Large Quantity Input -->
+<section class="text-center space-y-4">
+<label class="font-label-sm text-label-sm text-outline uppercase font-bold">Quantity to Add</label>
+<div class="relative inline-flex items-center group">
+<button class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all" id="minus-btn">
+<span class="material-symbols-outlined text-primary text-3xl">remove</span>
+</button>
+<input class="quantity-input w-48 text-center bg-transparent border-none focus:ring-0 font-display-lg text-display-lg text-primary selection:bg-primary-container" placeholder="0" type="number" value="0"/>
+<button class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container-high active:scale-90 transition-all" id="plus-btn">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</button>
+</div>
+</section>
+<!-- Details Section -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Supplier Field -->
+<div class="group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 px-1">Supplier</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">factory</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:bg-surface-container-high rounded-t-lg transition-all text-body-md focus:ring-0" placeholder="Search or select supplier" type="text"/>
+</div>
+</div>
+<!-- Unit Cost Field -->
+<div class="group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 px-1">Unit Cost (USD)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">payments</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:bg-surface-container-high rounded-t-lg transition-all text-body-md focus:ring-0" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</div>
+<!-- Notes Field -->
+<div class="group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 px-1">Notes (Optional)</label>
+<div class="relative">
+<textarea class="w-full p-4 bg-surface-container-low border-b-2 border-outline-variant focus:border-primary focus:bg-surface-container-high rounded-t-lg transition-all text-body-md focus:ring-0 resize-none" placeholder="Batch details, damage notes, etc." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-surface/80 backdrop-blur-md flex flex-col gap-3">
+<button class="w-full h-14 bg-primary text-white rounded-xl font-title-md flex items-center justify-center gap-3 shadow-lg active:scale-[0.98] transition-transform" id="confirm-btn">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            Confirm Receipt
+        </button>
+<p class="text-center font-label-sm text-label-sm text-outline-variant">Batch ID: #RE-882910-Z</p>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        const input = document.querySelector('.quantity-input');
+        const minus = document.getElementById('minus-btn');
+        const plus = document.getElementById('plus-btn');
+        const confirmBtn = document.getElementById('confirm-btn');
+
+        plus.onclick = () => {
+            input.value = parseInt(input.value) + 1;
+            animateFeedback();
+        };
+
+        minus.onclick = () => {
+            if(parseInt(input.value) > 0) {
+                input.value = parseInt(input.value) - 1;
+                animateFeedback();
+            }
+        };
+
+        function animateFeedback() {
+            input.style.transform = 'scale(1.1)';
+            setTimeout(() => input.style.transform = 'scale(1)', 100);
+        }
+
+        confirmBtn.onclick = () => {
+            confirmBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
+            confirmBtn.classList.replace('bg-primary', 'bg-outline');
+            
+            setTimeout(() => {
+                confirmBtn.innerHTML = '<span class="material-symbols-outlined">done_all</span> Stock Received';
+                confirmBtn.classList.replace('bg-outline', 'bg-primary');
+                
+                // Add a small success "toast" effect logic could go here
+                const toast = document.createElement('div');
+                toast.className = 'fixed top-4 left-1/2 -translate-x-1/2 bg-on-background text-background px-6 py-3 rounded-full shadow-2xl z-[100] transition-all opacity-0 flex items-center gap-2';
+                toast.innerHTML = '<span class="material-symbols-outlined text-primary-fixed">verified</span> Inventory Updated Successfully';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => toast.classList.remove('opacity-0'), 100);
+                setTimeout(() => {
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => toast.remove(), 500);
+                }, 3000);
+            }, 1200);
+        };
+    </script>
+</body></html>

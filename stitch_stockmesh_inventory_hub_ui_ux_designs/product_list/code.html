@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .product-card-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "primary-container": "#00873a",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#fffbff",
+                      "on-secondary-container": "#fefcff",
+                      "surface-dim": "#cbdbf5",
+                      "on-tertiary-fixed-variant": "#5a00c6",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#0b1c30",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#005320",
+                      "surface-container-low": "#eff4ff",
+                      "outline": "#6e7b6c",
+                      "on-primary-fixed": "#002109",
+                      "inverse-on-surface": "#eaf1ff",
+                      "secondary-fixed": "#dbe1ff",
+                      "secondary": "#0051d5",
+                      "surface-variant": "#d3e4fe",
+                      "primary": "#006b2c",
+                      "surface": "#f8f9ff",
+                      "primary-fixed": "#7ffc97",
+                      "on-surface-variant": "#3e4a3d",
+                      "on-primary-container": "#f7fff2",
+                      "tertiary": "#712ae2",
+                      "tertiary-fixed": "#eaddff",
+                      "surface-tint": "#006e2d",
+                      "on-error": "#ffffff",
+                      "on-surface": "#0b1c30",
+                      "on-secondary-fixed": "#00174b",
+                      "on-error-container": "#93000a",
+                      "background": "#f8f9ff",
+                      "tertiary-container": "#8a4cfc",
+                      "inverse-surface": "#213145",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#62df7d",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#316bf3",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "primary-fixed-dim": "#62df7d",
+                      "outline-variant": "#bdcaba",
+                      "on-tertiary-fixed": "#25005a",
+                      "tertiary-fixed-dim": "#d2bbff",
+                      "surface-container-high": "#dce9ff",
+                      "surface-container": "#e5eeff",
+                      "surface-bright": "#f8f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-tablet": "24px",
+                      "base": "8px",
+                      "margin-mobile": "16px",
+                      "gutter": "16px",
+                      "touch-target-min": "48px"
+              },
+              "fontFamily": {
+                      "title-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm flex justify-between items-center px-margin-mobile h-touch-target-min w-full z-50 sticky top-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">StockMesh</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="cloud_done">cloud_done</span>
+</div>
+</header>
+<main class="max-w-screen-md mx-auto px-margin-mobile pt-4">
+<!-- Search Section -->
+<div class="flex items-center gap-3 mb-6">
+<div class="flex-grow relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full h-[56px] pl-12 pr-4 bg-surface-container rounded-xl border-none focus:ring-2 focus:ring-primary text-body-md font-body-md transition-all" placeholder="Search products..." type="text"/>
+</div>
+<button class="w-[56px] h-[56px] flex items-center justify-center bg-primary-container text-on-primary-container rounded-xl active:scale-95 transition-transform shadow-sm">
+<span class="material-symbols-outlined" data-icon="barcode_scanner">barcode_scanner</span>
+</button>
+</div>
+<!-- Category Chips -->
+<div class="flex overflow-x-auto hide-scrollbar gap-2 mb-8 -mx-margin-mobile px-margin-mobile">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm whitespace-nowrap">All</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors">Electronics</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors">Groceries</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors">Furniture</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors">Apparel</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-highest transition-colors">Office</button>
+</div>
+<!-- Product List Header -->
+<div class="flex justify-between items-end mb-4">
+<h2 class="font-title-md text-title-md text-on-surface">Product List</h2>
+<span class="font-label-sm text-label-sm text-outline">124 items total</span>
+</div>
+<!-- Products Grid -->
+<div class="space-y-4">
+<!-- Product Card 1 (Low Stock) -->
+<div class="product-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A professional studio product shot of a high-end ergonomic mechanical keyboard with subtle RGB lighting, set against a clean slate-gray background. The lighting is crisp and detailed, showcasing the texture of the PBT keycaps. The overall aesthetic is industrial, modern, and high-fidelity, matching a professional warehouse management UI system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvRZb8QJ4w5DAfTSCOO-mJTjVqSvDN2uAKetGkpCpHN1REVA4beEwuvGyxz2IOuzUo3s6mJFt_JcsG9kgAtLFb_NixANq5Z3QKLKJE1nHrLxFT9DoCMoDxDmOfwt7Y3_S2ix3FCOh8rKjYZdk4HY7Ip4YUWE74eN5aozFd3shrI4vgsy0cD3j_P7b51Uc4Uw_Cd55xIR6bycQMvb4Vc-thcT_EiGTjKto_Jq-rZZzamDgkfiMcvar4"/>
+<div class="absolute top-1 right-1 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface">Precision Keyboard K9</h3>
+<span class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase">Low Stock</span>
+</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Electronics • SK-4492</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-high rounded text-on-surface-variant">4 in stock</span>
+<span class="font-title-md text-title-md text-primary">$129.00</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="product-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist product photograph of a sustainable stainless steel water bottle in a deep forest green color. The bottle is positioned on a white reflective surface with soft, diffused shadows. The lighting is bright and optimistic, emphasizing a high-quality, professional corporate modernist aesthetic suitable for a retail inventory application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZLkHfXz0ybXfQO3479y7qbdee6ekr4mTB-Hw0MRmL9Y8j9TBgtlc1AFluM798LC5HpmpojJG6kZc1XCiWjLuScNpfjfbWAu5aqUVvD1tYcskwevZd253IdOdWTjLvEzxg8Mt_VcwaOkmuc5avJVRmxPsq4eUlZIRqs1zYDnB8VFLvbgtBt7Z11UI18qpbwrCkGrX_Al3gjDKbXSwW-XJ1VkaOmv4XMd3ZYQ_Kk8VyiaNf9ajaDp9i"/>
+<div class="absolute top-1 right-1 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface">EcoSteel Flask 1L</h3>
+</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Accessories • SK-2210</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-high rounded text-on-surface-variant">45 in stock</span>
+<span class="font-title-md text-title-md text-primary">$45.00</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 (Pending Sync) -->
+<div class="product-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A sharp, detailed photograph of a professional-grade wireless mouse with an ergonomic design. The device is matte black with subtle metallic accents. It is presented in a high-key lighting environment with soft shadows, evoking a sense of precision and reliability. The style is consistent with high-end corporate dashboard designs and minimalist tech aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-HPDYqM3-ebSzP_2KbgOKD_2GCG6DY8Z7oRUVk9yRpA3hHau6PQzndNh8Wdb3DA-oEIFwOpuY4CR61dTbj3fe4U7Jt9qcJoacJBqj1jrBeSO9qQBBz6NrlX8RTw0BgygYQrqaEI8VzFnJTCaWjC6VrOzdGqZkbU3c-LNVDw8iIO_qafP40A6ILH_PZy-Fu_BT7s1SlvVayG7ajek99_H_KUCIOl37PCxz65b68HGzpp9mxgAHIech"/>
+<div class="absolute top-1 right-1 w-3 h-3 bg-tertiary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface">AeroMouse Pro Gen 2</h3>
+</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Electronics • SK-9938</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-high rounded text-on-surface-variant">12 in stock</span>
+<span class="font-title-md text-title-md text-primary">$89.50</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-[10px] italic">
+<span class="material-symbols-outlined text-[14px]" data-icon="sync">sync</span>
+                            Syncing
+                        </div>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="product-card-shadow bg-surface-container-lowest border border-outline-variant rounded-xl p-5 flex gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="w-20 h-20 bg-surface-container rounded-lg overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="A commercial-style photo of an organic cotton tote bag in a natural cream color with high-quality stitching. The bag is neatly folded on a light wood surface. The lighting is warm and natural, creating a soft but clear image that fits a modern, professional retail inventory system's clean and functional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBtYFJAD7IFUfwgN8axkLE6u0bO7FXwaDfxN8Rjx0fPAg46R5EXFRg_RcAtU1iTLGccsPpPpdVybIFQxzea2f1q1ekaGdPteQnXchnRnn91n_zmGBU55DI6wWh_VtqXPL9_L42jGdZ4X8BlOu-DR4wirYP18T8nW0rmrSBrLMHIwuyPVZEojpxG-EJqqFpCEmUoJ1BDTZjbbFo7YNTFG7fbW9zVg2j1c0NHRpy0NH5I8QliHeDWzDQ"/>
+<div class="absolute top-1 right-1 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-on-surface">Cotton Tote Organic</h3>
+</div>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Groceries • SK-1004</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-high rounded text-on-surface-variant">230 in stock</span>
+<span class="font-title-md text-title-md text-primary">$12.00</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary-container text-on-primary-container rounded-xl shadow-lg flex items-center justify-center active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined !text-[28px]" data-icon="add">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface dark:bg-surface-dim shadow-[0px_-1px_3px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inventory" style="font-variation-settings: 'FILL' 1;">inventory</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions for category chips
+        const chips = document.querySelectorAll('.flex.overflow-x-auto button');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.add('bg-primary', 'text-on-primary');
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+
+        // Search focus interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>

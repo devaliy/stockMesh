@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh | Analytics Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "primary": "#006b2c",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-tint": "#006e2d",
+                    "outline-variant": "#bdcaba",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "secondary-container": "#316bf3",
+                    "on-tertiary-container": "#fffbff",
+                    "on-error": "#ffffff",
+                    "background": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "surface": "#f8f9ff",
+                    "tertiary": "#712ae2",
+                    "inverse-primary": "#62df7d",
+                    "on-background": "#0b1c30",
+                    "secondary-fixed": "#dbe1ff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "surface-container": "#e5eeff",
+                    "inverse-surface": "#213145",
+                    "surface-variant": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#8a4cfc",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-primary-container": "#f7fff2",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed-variant": "#005320",
+                    "tertiary-fixed": "#eaddff",
+                    "primary-fixed-dim": "#62df7d",
+                    "outline": "#6e7b6c",
+                    "on-surface": "#0b1c30",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#7ffc97",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "on-primary-fixed": "#002109",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#cbdbf5",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-secondary-container": "#fefcff",
+                    "secondary": "#0051d5",
+                    "on-secondary-fixed": "#00174b",
+                    "primary-container": "#00873a",
+                    "on-tertiary-fixed": "#25005a",
+                    "surface-container-low": "#eff4ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "margin-tablet": "24px",
+                    "touch-target-min": "48px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .chart-container { position: relative; width: 100%; height: 200px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #bdcaba; border-radius: 10px; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface mb-24 md:mb-0 md:pl-0">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface flex justify-between items-center px-margin-mobile h-touch-target-min w-full">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low transition-colors active:scale-95 duration-150 ease-in-out">grid_view</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">StockMesh</h1>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Synced</span>
+</div>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low transition-colors active:scale-95 duration-150 ease-in-out">sync</button>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile md:px-margin-tablet max-w-7xl mx-auto pb-24">
+<!-- Large Numeric Section: Sales -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Daily Sales</p>
+<div class="flex items-end justify-between">
+<h2 class="font-display-lg text-display-lg text-primary">$12,480</h2>
+<span class="flex items-center text-primary font-bold mb-2">
+<span class="material-symbols-outlined">trending_up</span> 12%
+                    </span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full w-[70%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Weekly Revenue</p>
+<div class="flex items-end justify-between">
+<h2 class="font-display-lg text-display-lg text-tertiary">$84,200</h2>
+<span class="flex items-center text-tertiary font-bold mb-2">
+<span class="material-symbols-outlined">trending_up</span> 5.4%
+                    </span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-tertiary h-full w-[85%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Inventory Value</p>
+<div class="flex items-end justify-between">
+<h2 class="font-display-lg text-display-lg text-on-surface">$1.2M</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-2">Total Assets</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-on-surface h-full w-[92%]"></div>
+</div>
+</div>
+</section>
+<!-- Charts & Analytics Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-8">
+<div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-title-md text-title-md">Sales Trends</h3>
+<div class="flex gap-2">
+<button class="text-label-sm font-label-sm px-3 py-1 rounded-full bg-primary text-on-primary">Line</button>
+<button class="text-label-sm font-label-sm px-3 py-1 rounded-full bg-surface-container text-on-surface-variant">Bar</button>
+</div>
+</div>
+<div class="chart-container flex items-end justify-around gap-1 pt-4">
+<!-- Simple CSS Bar/Line representation -->
+<div class="w-full h-full relative border-l border-b border-outline-variant flex items-end justify-around px-2">
+<div class="w-8 bg-primary-container opacity-20 h-[40%] rounded-t-sm"></div>
+<div class="w-8 bg-primary-container opacity-30 h-[60%] rounded-t-sm"></div>
+<div class="w-8 bg-primary h-[55%] rounded-t-sm relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-on-surface text-surface text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Wed: $12k</div>
+</div>
+<div class="w-8 bg-primary-container opacity-50 h-[80%] rounded-t-sm"></div>
+<div class="w-8 bg-primary-container opacity-60 h-[70%] rounded-t-sm"></div>
+<div class="w-8 bg-primary-container opacity-70 h-[90%] rounded-t-sm"></div>
+<div class="w-8 bg-primary-container opacity-80 h-[100%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<h3 class="font-title-md text-title-md mb-6">Category Mix</h3>
+<div class="flex justify-center mb-4">
+<!-- CSS Pie Chart Placeholder -->
+<div class="w-40 h-40 rounded-full border-[12px] border-surface-container relative" style="background: conic-gradient(#006b2c 0% 45%, #712ae2 45% 75%, #0051d5 75% 100%)">
+<div class="absolute inset-0 m-auto w-24 h-24 bg-surface-container-lowest rounded-full flex flex-col items-center justify-center">
+<span class="text-label-sm font-bold">Total</span>
+<span class="text-title-md font-bold">1.2k</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-sm">
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-primary"></div>Electronics</span>
+<span class="font-bold">45%</span>
+</div>
+<div class="flex justify-between items-center text-label-sm">
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-tertiary"></div>Apparel</span>
+<span class="font-bold">30%</span>
+</div>
+<div class="flex justify-between items-center text-label-sm">
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-secondary"></div>Home</span>
+<span class="font-bold">25%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Products: Horizontal Scroll -->
+<section class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-title-md text-title-md">Top Performing Products</h3>
+<button class="text-primary font-label-sm text-label-sm flex items-center">View All <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span></button>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scroll pb-4 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<!-- Product Card 1 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:border-primary transition-colors">
+<div class="h-32 bg-surface-container-low relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A professional studio product shot of a high-end titanium mechanical keyboard on a clean white desk, with dramatic emerald green accent lighting that matches a corporate modernism aesthetic. The lighting is crisp and the composition is minimalist, highlighting the craftsmanship of the metal keys." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLpbyiJARiuz3cxGa2A5QIqpHX0_OPG0rPDvZYLgnaUKg1R1dj_aWHXJu-xhnfdGgTS9LFXYP5lWaj5FHVC0DoDxePzLnm-vWN7TH0ACR7se3xdXLz_fawlk73lgmZGClUFo95R082jNFdMhWoMX98dd_RErzdCjGvUx8jWq377vlYf0kIXBztCqmWoMwnEog95Daanbs24gW_i80udBT5D8RrcHcrO9OBTVr9xhw3E-e6_-hqV8rU')"></div>
+<div class="absolute top-2 right-2 bg-emerald-500 w-2 h-2 rounded-full border-2 border-surface shadow-sm"></div>
+</div>
+<div class="p-4">
+<h4 class="font-title-md text-title-md truncate mb-1">Titanium Core Keyboard</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-on-surface-variant">248 Units Sold</span>
+<span class="text-primary font-bold">$299.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:border-primary transition-colors">
+<div class="h-32 bg-surface-container-low relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-resolution commercial photography image of sleek ergonomic noise-canceling headphones in a deep forest green color, displayed on a minimalist wooden stand. The backdrop is a soft neutral gray with professional studio lighting that emphasizes the premium texture of the materials." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCj0jjeghKnULhq2B4Poq1pV1iRmAfOfrEFf3MC4R2FoqoioXOgWqH8cVr-VPG7HVZKbeU4gceSMV5XPadueaJlxNYWxvx1ndWtKW6elNmyA5uDVzbXhQwviVFCjTK-DaMO-SYx986PJnZ5SogJD1cHrMh5m9_yDeVvTn7rnazIzwUKWwItaDtD2pVp7dsTOlQfsrUSBfwQiftYDabuOc6qBFga32NafdEsFvHRFd4Ytsh91j0tPl9Q')"></div>
+<div class="absolute top-2 right-2 bg-emerald-500 w-2 h-2 rounded-full border-2 border-surface shadow-sm"></div>
+</div>
+<div class="p-4">
+<h4 class="font-title-md text-title-md truncate mb-1">Silence Pro X2</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-on-surface-variant">192 Units Sold</span>
+<span class="text-primary font-bold">$189.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden group hover:border-primary transition-colors">
+<div class="h-32 bg-surface-container-low relative">
+<div class="w-full h-full bg-cover bg-center" data-alt="An artistic top-down photo of a minimalist aluminum laptop stand in silver, placed on a high-texture concrete surface with shadows of indoor plants casting across it. The scene is bright and airy, following a modern retail catalog style with precise focus and soft light diffusion." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA1fpWsoekdP8aLhnHKkE2vM9I_Wpt6VxWbGNw6UPtZVdlTYvUUKEgDmLyjspgLGnYatd76wYqUT0mQrkm9XR71lcZKJsKxrGQr3zKJpe63g-R72qmo4RPUTFqe2w1llVPyCDfh9vphsdDI2jt2ETqnyagVXQIFD0sI_N4akDLRc0doAkOKx9SzuQSWyWKKTU68zmmgWozits4waKEGBZMteGtCBr4x6HyLwNTvB-0AnBZe0yRgM3W')"></div>
+<div class="absolute top-2 right-2 bg-emerald-500 w-2 h-2 rounded-full border-2 border-surface shadow-sm"></div>
+</div>
+<div class="p-4">
+<h4 class="font-title-md text-title-md truncate mb-1">AirLift Ergo Stand</h4>
+<div class="flex justify-between items-center">
+<span class="text-label-sm font-label-sm text-on-surface-variant">156 Units Sold</span>
+<span class="text-primary font-bold">$85.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Fast Moving vs Low Stock Bento -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<h3 class="font-title-md text-title-md">Fast Moving Items</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-md"></div>
+<div>
+<p class="font-body-md text-body-md font-semibold">USB-C Hub Pro</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">SKU: ST-1293</p>
+</div>
+</div>
+<span class="bg-primary-container text-on-primary-container text-[10px] px-2 py-0.5 rounded font-bold">CRITICAL TURNOVER</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-md"></div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Webcam 4K Ultra</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">SKU: ST-8821</p>
+</div>
+</div>
+<span class="bg-primary-container text-on-primary-container text-[10px] px-2 py-0.5 rounded font-bold">HIGH DEMAND</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-error/20 border-2">
+<div class="flex items-center gap-2 mb-6 text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<h3 class="font-title-md text-title-md">Low Stock Alerts</h3>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-error-container/30 rounded-lg border border-error-container">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-md"></div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Smart Desk Lamp</p>
+<p class="text-label-sm font-label-sm text-error">Only 4 left</p>
+</div>
+</div>
+<button class="bg-error text-on-error text-label-sm font-label-sm px-4 py-2 rounded-full">Restock</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-error-container/30 rounded-lg border border-error-container">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-md"></div>
+<div>
+<p class="font-body-md text-body-md font-semibold">Wireless Trackpad</p>
+<p class="text-label-sm font-label-sm text-error">Only 2 left</p>
+</div>
+</div>
+<button class="bg-error text-on-error text-label-sm font-label-sm px-4 py-2 rounded-full">Restock</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 pb-safe bg-surface-container dark:bg-surface-dim shadow-sm rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-sm text-label-sm">Products</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">point_of_sale</span>
+<span class="font-label-sm text-label-sm">Sell</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm">Reports</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<!-- Sidebar (Desktop Alternative) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-20 flex-col items-center py-8 bg-surface border-r border-outline-variant z-40">
+<div class="mb-12">
+<span class="material-symbols-outlined text-primary text-3xl font-bold">package_2</span>
+</div>
+<div class="flex flex-col gap-8">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">dashboard</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">inventory_2</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">point_of_sale</button>
+<button class="material-symbols-outlined text-primary bg-primary-container p-3 rounded-xl" style="font-variation-settings: 'FILL' 1;">analytics</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+</div>
+<div class="mt-auto">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold">JD</div>
+</div>
+</nav>
+<script>
+        // Simple micro-interactions for active state
+        document.querySelectorAll('nav button, nav div').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // In a real app, this would handle routing
+                console.log('Navigated to: ' + btn.textContent.trim());
+            });
+        });
+    </script>
+</body></html>

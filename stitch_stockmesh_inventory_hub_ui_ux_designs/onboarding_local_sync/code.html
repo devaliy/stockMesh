@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>StockMesh Onboarding - Local Sync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container": "#e5eeff",
+                    "outline": "#6e7b6c",
+                    "surface-tint": "#006e2d",
+                    "primary-fixed-dim": "#62df7d",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9ff",
+                    "tertiary-fixed": "#eaddff",
+                    "secondary-container": "#316bf3",
+                    "primary-container": "#00873a",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#002109",
+                    "on-secondary-container": "#fefcff",
+                    "surface-container-high": "#dce9ff",
+                    "secondary": "#0051d5",
+                    "tertiary": "#712ae2",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-fixed": "#25005a",
+                    "inverse-primary": "#62df7d",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "on-surface-variant": "#3e4a3d",
+                    "background": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "primary": "#006b2c",
+                    "inverse-surface": "#213145",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#00174b",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary-container": "#f7fff2",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bdcaba",
+                    "on-surface": "#0b1c30",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bdcaba",
+                    "on-surface": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "tertiary-container": "#8a4cfc",
+                    "secondary-fixed": "#dbe1ff",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-dim": "#cbdbf5",
+                    "primary-fixed": "#7ffc97"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-tablet": "24px",
+                    "touch-target-min": "48px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ripple-animation {
+            animation: ripple 3s linear infinite;
+        }
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .delay-1 { animation-delay: 1s; }
+        .delay-2 { animation-delay: 2s; }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Suppression: Not shown for Onboarding as per Destination Rule -->
+<main class="flex-1 flex flex-col items-center justify-between px-margin-mobile pt-12 pb-8 max-w-md mx-auto w-full">
+<!-- Onboarding Progress -->
+<div class="flex gap-2 w-full justify-center mb-8">
+<div class="h-1.5 w-8 rounded-full bg-surface-container-highest"></div>
+<div class="h-1.5 w-12 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Illustration Canvas (Visual Focus) -->
+<div class="relative w-full aspect-square flex items-center justify-center mb-12">
+<!-- Animated Background Ripples representing WiFi waves -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="ripple-animation absolute w-32 h-32 rounded-full border-2 border-primary/20"></div>
+<div class="ripple-animation delay-1 absolute w-32 h-32 rounded-full border-2 border-primary/20"></div>
+<div class="ripple-animation delay-2 absolute w-32 h-32 rounded-full border-2 border-primary/20"></div>
+</div>
+<!-- The Central Hub Device -->
+<div class="relative z-10 w-32 h-56 bg-surface-container-lowest border-4 border-on-background rounded-[2rem] shadow-xl flex flex-col items-center p-4">
+<div class="w-12 h-1 bg-on-background/20 rounded-full mb-6"></div>
+<div class="flex flex-col items-center gap-3">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">router</span>
+<div class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">HUB MODE</div>
+</div>
+<div class="mt-auto w-full space-y-2">
+<div class="h-2 bg-surface-container-highest rounded w-3/4"></div>
+<div class="h-2 bg-surface-container-highest rounded w-full"></div>
+</div>
+</div>
+<!-- Peripheral Satellite Devices -->
+<!-- Top Left Device -->
+<div class="absolute top-4 left-4 floating" style="animation-delay: 0.5s;">
+<div class="w-16 h-28 bg-white border-2 border-outline-variant rounded-xl shadow-md p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-outline text-xl">smartphone</span>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded"></div>
+<span class="material-symbols-outlined text-primary text-sm mt-auto" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+</div>
+<!-- Top Right Device -->
+<div class="absolute top-12 right-0 floating" style="animation-delay: 1.2s;">
+<div class="w-20 h-32 bg-white border-2 border-outline-variant rounded-xl shadow-md p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-outline text-xl">tablet</span>
+<div class="mt-2 w-full h-1 bg-surface-container-highest rounded"></div>
+<div class="mt-1 w-2/3 h-1 bg-surface-container-highest rounded"></div>
+<span class="material-symbols-outlined text-primary text-sm mt-auto" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+</div>
+<!-- Bottom Left Device -->
+<div class="absolute bottom-16 left-0 floating" style="animation-delay: 2s;">
+<div class="w-14 h-24 bg-white border-2 border-outline-variant rounded-xl shadow-md p-2 flex flex-col items-center">
+<span class="material-symbols-outlined text-outline text-xl">smartphone</span>
+<span class="material-symbols-outlined text-primary text-sm mt-auto" style="font-variation-settings: 'FILL' 1;">sync</span>
+</div>
+</div>
+<!-- Bottom Right Decorative UI Element -->
+<div class="absolute bottom-4 right-10 floating" style="animation-delay: 0.8s;">
+<div class="bg-surface-container-high p-3 rounded-2xl shadow-lg border border-white/50">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Sync Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Copy Content -->
+<div class="text-center space-y-4">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Local Network Sync</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Connect multiple devices to one Hub. Updates sync instantly over local WiFi.</p>
+</div>
+<!-- Actions -->
+<div class="w-full space-y-4 mt-12">
+<button class="w-full bg-primary text-on-primary h-touch-target-min rounded-xl font-title-md text-title-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors active:scale-95 duration-150" onclick="handleNext()">
+                Next
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full bg-transparent text-outline h-touch-target-min rounded-xl font-label-sm text-label-sm hover:text-on-surface transition-colors">
+                Skip Setup
+            </button>
+</div>
+</main>
+<!-- Footer Connectivity Ribbon (Institutional Offline-First Identity) -->
+<footer class="p-4 flex justify-center">
+<div class="bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/30 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">cloud_off</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Working Locally</span>
+</div>
+</footer>
+<script>
+        function handleNext() {
+            // Logic for navigating to Screen 3 of 3
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 300ms ease-in-out';
+            setTimeout(() => {
+                // In a real app, window.location.href = 'onboarding_3.html';
+                console.log('Navigating to Screen 3...');
+                document.body.style.opacity = '1';
+            }, 300);
+        }
+
+        // Micro-interaction for Hub
+        const hub = document.querySelector('.relative.z-10');
+        hub.addEventListener('touchstart', () => {
+            hub.style.transform = 'scale(0.98)';
+        });
+        hub.addEventListener('touchend', () => {
+            hub.style.transform = 'scale(1)';
+        });
+    </script>
+</body></html>

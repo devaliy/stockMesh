@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Product Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .fill-icon {
+      font-variation-settings: 'FILL' 1;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Custom thin scrollbar for history */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #bdcaba;
+      border-radius: 10px;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-tertiary": "#ffffff",
+                  "primary": "#006b2c",
+                  "inverse-on-surface": "#eaf1ff",
+                  "surface-tint": "#006e2d",
+                  "outline-variant": "#bdcaba",
+                  "error": "#ba1a1a",
+                  "on-secondary-fixed-variant": "#003ea8",
+                  "secondary-container": "#316bf3",
+                  "on-tertiary-container": "#fffbff",
+                  "on-error": "#ffffff",
+                  "background": "#f8f9ff",
+                  "on-error-container": "#93000a",
+                  "surface": "#f8f9ff",
+                  "tertiary": "#712ae2",
+                  "inverse-primary": "#62df7d",
+                  "on-background": "#0b1c30",
+                  "secondary-fixed": "#dbe1ff",
+                  "secondary-fixed-dim": "#b4c5ff",
+                  "surface-container": "#e5eeff",
+                  "inverse-surface": "#213145",
+                  "surface-variant": "#d3e4fe",
+                  "on-secondary": "#ffffff",
+                  "tertiary-container": "#8a4cfc",
+                  "surface-container-highest": "#d3e4fe",
+                  "on-primary-container": "#f7fff2",
+                  "surface-container-lowest": "#ffffff",
+                  "surface-bright": "#f8f9ff",
+                  "on-primary-fixed-variant": "#005320",
+                  "tertiary-fixed": "#eaddff",
+                  "primary-fixed-dim": "#62df7d",
+                  "outline": "#6e7b6c",
+                  "on-surface": "#0b1c30",
+                  "error-container": "#ffdad6",
+                  "primary-fixed": "#7ffc97",
+                  "surface-container-high": "#dce9ff",
+                  "on-tertiary-fixed-variant": "#5a00c6",
+                  "tertiary-fixed-dim": "#d2bbff",
+                  "on-primary-fixed": "#002109",
+                  "on-primary": "#ffffff",
+                  "surface-dim": "#cbdbf5",
+                  "on-surface-variant": "#3e4a3d",
+                  "on-secondary-container": "#fefcff",
+                  "secondary": "#0051d5",
+                  "on-secondary-fixed": "#00174b",
+                  "primary-container": "#00873a",
+                  "on-tertiary-fixed": "#25005a",
+                  "surface-container-low": "#eff4ff"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "margin-mobile": "16px",
+                  "gutter": "16px",
+                  "base": "8px",
+                  "margin-tablet": "24px",
+                  "touch-target-min": "48px"
+          },
+          "fontFamily": {
+                  "body-md": ["Inter"],
+                  "headline-lg-mobile": ["Inter"],
+                  "title-md": ["Inter"],
+                  "label-sm": ["Inter"],
+                  "headline-lg": ["Inter"],
+                  "display-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                  "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                  "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                  "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-40">
+<!-- Top App Bar (From Shared Components) -->
+<header class="flex justify-between items-center px-margin-mobile h-touch-target-min w-full fixed top-0 z-50 bg-surface">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150 ease-in-out">arrow_back</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">StockMesh</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150 ease-in-out">sync</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded-full active:scale-95 duration-150 ease-in-out">grid_view</button>
+</div>
+</header>
+<main class="mt-[48px]">
+<!-- Product Hero Section -->
+<div class="relative w-full h-[45vh] md:h-[50vh] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A premium close-up studio shot of a high-end mechanical watch on a dark velvet display. The lighting is dramatic and focused, highlighting the metallic textures and intricate dial details. The overall mood is sophisticated and institutional, fitting a high-fidelity inventory management system. Soft cinematic bokeh in the background adds depth and a sense of luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCuie1YuT59GXshZrYidw83cRKkgESXj5spMS8v4fVljpiECqWbBzAevmmv92qMAFfHRyRR8O5Ifq66XGMlzl-EyatKrM5ej5s2ftD4Ig0thEt4a0Guz8J4NbbXlwplDNiSZsWrg0Rp8FGnpLOG3R2asfXy72yUPSSDHk9ue0sCZPKok_3DGpB0VIJwtRIj6WUfLfYkKBgUvoEuQal808QzX-UNT6pk9AHRFUmUICQq_OyPhXVLJ_Rv')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+<!-- Edit Floating Button -->
+<button class="absolute top-4 right-4 bg-surface-container-lowest/80 backdrop-blur-md p-4 rounded-full shadow-lg text-primary active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined fill-icon" style="font-variation-settings: 'FILL' 1;">edit</span>
+</button>
+<!-- Overlay Info -->
+<div class="absolute bottom-6 left-margin-mobile right-margin-mobile">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm mb-2 inline-block backdrop-blur-md border border-primary/20">Watches &amp; Accessories</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-surface">Seiko Presage Cocktail Time</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">SKU: SM-PROD-9021</p>
+</div>
+</div>
+<!-- Details Canvas -->
+<div class="px-margin-mobile -mt-4 relative z-10 space-y-6">
+<!-- Primary Info Cards (Grid) -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Stock Status (Large Badge style) -->
+<div class="col-span-2 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Current Stock</p>
+<p class="font-display-lg text-display-lg text-primary">42 <span class="text-headline-lg-mobile font-normal text-on-surface-variant">units</span></p>
+</div>
+<div class="text-right">
+<div class="flex items-center text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined mr-1">check_circle</span>
+              Synced
+            </div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Last scan: 2m ago</p>
+</div>
+</div>
+<!-- Prices -->
+<div class="bg-surface-container p-5 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Selling Price</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-secondary font-bold">$450.00</p>
+</div>
+<div class="bg-surface-container p-5 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Cost Price</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface-variant font-bold">$280.00</p>
+</div>
+<!-- Barcode Card -->
+<div class="col-span-2 bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl">barcode</span>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Universal Barcode</p>
+<p class="font-title-md text-title-md text-on-surface font-mono">4 954628 211244</p>
+</div>
+<button class="material-symbols-outlined text-primary active:scale-95 transition-transform">content_copy</button>
+</div>
+</div>
+<!-- Inventory History Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined">history</span>
+            Inventory History
+          </h3>
+<button class="text-primary font-label-sm text-label-sm font-bold">View All</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 overflow-hidden divide-y divide-outline-variant/20">
+<!-- History Entry 1 -->
+<div class="p-4 flex justify-between items-center hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">add_box</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Stock Received</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">PO #88293 • Oct 12, 2023</p>
+</div>
+</div>
+<p class="font-title-md text-title-md text-primary font-bold">+15</p>
+</div>
+<!-- History Entry 2 -->
+<div class="p-4 flex justify-between items-center hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-secondary/10 p-2 rounded-full">
+<span class="material-symbols-outlined text-secondary">shopping_cart</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Sale Recorded</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">INV-44102 • Oct 11, 2023</p>
+</div>
+</div>
+<p class="font-title-md text-title-md text-error font-bold">-2</p>
+</div>
+<!-- History Entry 3 -->
+<div class="p-4 flex justify-between items-center hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-tertiary/10 p-2 rounded-full">
+<span class="material-symbols-outlined text-tertiary">tune</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">Stock Adjustment</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Internal Audit • Oct 09, 2023</p>
+</div>
+</div>
+<p class="font-title-md text-title-md text-on-surface-variant font-bold">-1</p>
+</div>
+</div>
+</section>
+<!-- Warehouse Locations -->
+<section class="space-y-4">
+<h3 class="font-title-md text-title-md text-on-surface">Distribution</h3>
+<div class="bg-surface-container-low p-4 rounded-xl space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface">Main Warehouse (A12)</span>
+<span class="font-body-md text-body-md font-bold text-on-surface">32</span>
+</div>
+<div class="w-full bg-outline-variant/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[76%] rounded-full"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-body-md text-body-md text-on-surface">Retail Floor (Zone B)</span>
+<span class="font-body-md text-body-md font-bold text-on-surface">10</span>
+</div>
+<div class="w-full bg-outline-variant/20 h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[24%] rounded-full"></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Quick Action Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container p-4 pb-safe border-t border-outline-variant/10 shadow-[0_-8px_30px_rgb(0,0,0,0.04)]">
+<div class="grid grid-cols-4 gap-2">
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-primary text-on-primary shadow-sm hover:brightness-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">download</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-tighter">Receive</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-secondary text-on-secondary shadow-sm hover:brightness-95 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">point_of_sale</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-tighter">Sell</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">sync_alt</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-tighter">Transfer</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-xl bg-surface-container-highest text-on-surface-variant hover:bg-surface-container-high active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">tune</span>
+<span class="font-label-sm text-[10px] uppercase font-bold tracking-tighter">Adjust</span>
+</button>
+</div>
+</nav>
+<!-- Connectivity Ribbon (Offline-First Messaging) -->
+<div class="fixed top-[48px] left-0 w-full bg-primary/95 text-on-primary py-1 px-margin-mobile flex items-center justify-center gap-2 transform -translate-y-full transition-transform duration-300 z-40" id="connectivity-ribbon">
+<span class="material-symbols-outlined text-sm">cloud_done</span>
+<span class="font-label-sm text-label-sm">Changes synced to server</span>
+</div>
+<script>
+    // Lightweight micro-interaction for the connectivity ribbon
+    document.addEventListener('DOMContentLoaded', () => {
+      const ribbon = document.getElementById('connectivity-ribbon');
+      
+      // Simulate an "Offline Mode" trigger or sync confirmation
+      setTimeout(() => {
+        ribbon.classList.remove('-translate-y-full');
+        setTimeout(() => {
+          ribbon.classList.add('-translate-y-full');
+        }, 3000);
+      }, 1500);
+
+      // Scroll observer to add shadow to TopAppBar
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('shadow-md', 'bg-surface/95', 'backdrop-blur-md');
+        } else {
+          header.classList.remove('shadow-md', 'bg-surface/95', 'backdrop-blur-md');
+        }
+      });
+    });
+  </script>
+</body></html>

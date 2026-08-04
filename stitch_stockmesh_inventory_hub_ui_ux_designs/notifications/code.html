@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StockMesh - Activity &amp; Alerts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .bento-card {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .bento-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed": "#002109",
+                        "inverse-primary": "#62df7d",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#7ffc97",
+                        "surface-tint": "#006e2d",
+                        "primary-fixed-dim": "#62df7d",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-low": "#eff4ff",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bdcaba",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "tertiary": "#712ae2",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#8a4cfc",
+                        "surface": "#f8f9ff",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary": "#0051d5",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#006b2c",
+                        "secondary-fixed": "#dbe1ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary-fixed": "#eaddff",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed": "#00174b",
+                        "primary-container": "#00873a",
+                        "outline": "#6e7b6c",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-primary-container": "#f7fff2",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-container": "#fefcff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "48px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "margin-tablet": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-touch-target-min">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="inventory_2">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">StockMesh</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="cloud_done">cloud_done</span>
+<button class="active:scale-95 duration-200 hover:bg-surface-container-high transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 max-w-md mx-auto">
+<div class="mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold tracking-tight">Activity &amp; Alerts</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Keep track of your inventory health.</p>
+</div>
+<!-- Section: Today -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-md text-title-md text-primary font-bold uppercase tracking-widest text-[11px]">Today</h3>
+<span class="h-[1px] flex-grow ml-4 bg-outline-variant opacity-30"></span>
+</div>
+<div class="space-y-4">
+<!-- Low Stock Alert -->
+<div class="bento-card bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-5 shadow-[0px_1px_3px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined fill-icon" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-body-md font-semibold text-on-surface">Low Stock Alert</h4>
+<span class="text-[10px] font-medium text-on-surface-variant/60 uppercase">2m ago</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mt-1 leading-relaxed">
+<span class="font-bold text-on-surface">Organic Cold Brew</span> is below the critical threshold (5 units remaining).
+                            </p>
+<button class="mt-3 text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                Restock Now <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Sync Completed -->
+<div class="bento-card bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-5 shadow-[0px_1px_3px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined fill-icon" data-icon="sync_saved_locally" style="font-variation-settings: 'FILL' 1;">sync_saved_locally</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-body-md font-semibold text-on-surface">Sync Completed</h4>
+<span class="text-[10px] font-medium text-on-surface-variant/60 uppercase">1h ago</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mt-1 leading-relaxed">
+                                All 1,240 inventory items have been successfully reconciled with the cloud database.
+                            </p>
+<div class="mt-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-[11px] font-bold text-primary uppercase">Fully Synced</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Yesterday -->
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-title-md text-title-md text-on-surface-variant font-bold uppercase tracking-widest text-[11px]">Yesterday</h3>
+<span class="h-[1px] flex-grow ml-4 bg-outline-variant opacity-30"></span>
+</div>
+<div class="space-y-4">
+<!-- New Device Connected -->
+<div class="bento-card bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-5 shadow-[0px_1px_3px_rgba(0,0,0,0.05)]">
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined fill-icon" data-icon="devices" style="font-variation-settings: 'FILL' 1;">devices</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-body-md font-semibold text-on-surface">New Device Connected</h4>
+<span class="text-[10px] font-medium text-on-surface-variant/60 uppercase">4:22 PM</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mt-1 leading-relaxed">
+                                A Zebra TC21 scanner was authorized for warehouse "North Sector B".
+                            </p>
+</div>
+</div>
+</div>
+<!-- Backup Recommended -->
+<div class="bento-card bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-5 shadow-[0px_1px_3px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="flex gap-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined fill-icon" data-icon="cloud_upload" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-title-md text-body-md font-semibold text-on-surface">Backup Recommended</h4>
+<span class="text-[10px] font-medium text-on-surface-variant/60 uppercase">10:15 AM</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant mt-1 leading-relaxed">
+                                You haven't performed a local database export in 7 days. We recommend a CSV backup.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Aesthetic Visual Element -->
+<div class="mt-12 rounded-3xl overflow-hidden relative h-48 group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, minimalist high-tech warehouse interior with soft emerald green ambient lighting and organized shelving units. The scene is shot with a shallow depth of field, focusing on a digital interface tablet in the foreground. The lighting is bright and professional, following a modern enterprise aesthetic with white and light slate tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSS1nSEsEbbyv1BklYJAxtCJncG3GKjMTB4rpnbl6zDsDEMhFC1srMx_a8EVBMmAA-oP8pDAuykP0QpsqBON06lhkMZepK8Krl3qgJXN3__NocwCYA-zewPYP-e2-SPonug7YeAVg-uR90YNEMHHiGE7ZfrzHhzk8iR1g5JtVFPTpztGyOQZksWLaGo-dOOl6j9SlZYATurh1gswaXK3PdDs7cChsYXvcc1RYVh5Lkdnbm9cAMVFm7')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<div class="text-on-primary">
+<p class="font-bold text-lg">System Health: 98%</p>
+<p class="text-sm opacity-90">All nodes operational. No critical system errors detected.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-surface dark:bg-surface-dim shadow-[0px_-1px_3px_rgba(0,0,0,0.05)] z-50">
+<!-- Dashboard -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm mt-1">Dashboard</span>
+</a>
+<!-- Products -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="font-label-sm text-label-sm mt-1">Products</span>
+</a>
+<!-- Sell -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="point_of_sale">point_of_sale</span>
+<span class="font-label-sm text-label-sm mt-1">Sell</span>
+</a>
+<!-- Reports -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm mt-1">Reports</span>
+</a>
+<!-- Settings (Active as it maps to Notification/Activity Preferences context) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm mt-1">Settings</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body></html>

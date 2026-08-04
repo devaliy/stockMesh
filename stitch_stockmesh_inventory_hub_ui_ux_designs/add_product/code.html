@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Add Product | StockMesh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "primary-container": "#00873a",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary-container": "#fefcff",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-fixed-variant": "#5a00c6",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#005320",
+                    "surface-container-low": "#eff4ff",
+                    "outline": "#6e7b6c",
+                    "on-primary-fixed": "#002109",
+                    "inverse-on-surface": "#eaf1ff",
+                    "secondary-fixed": "#dbe1ff",
+                    "secondary": "#0051d5",
+                    "surface-variant": "#d3e4fe",
+                    "primary": "#006b2c",
+                    "surface": "#f8f9ff",
+                    "primary-fixed": "#7ffc97",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-primary-container": "#f7fff2",
+                    "tertiary": "#712ae2",
+                    "tertiary-fixed": "#eaddff",
+                    "surface-tint": "#006e2d",
+                    "on-error": "#ffffff",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#00174b",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9ff",
+                    "tertiary-container": "#8a4cfc",
+                    "inverse-surface": "#213145",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#62df7d",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#316bf3",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "primary-fixed-dim": "#62df7d",
+                    "outline-variant": "#bdcaba",
+                    "on-tertiary-fixed": "#25005a",
+                    "tertiary-fixed-dim": "#d2bbff",
+                    "surface-container-high": "#dce9ff",
+                    "surface-container": "#e5eeff",
+                    "surface-bright": "#f8f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-tablet": "24px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "gutter": "16px",
+                    "touch-target-min": "48px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-input-container {
+            position: relative;
+            background-color: #eff4ff; /* surface-container-low */
+            border-bottom: 2px solid #6e7b6c; /* outline */
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .filled-input-container:focus-within {
+            border-bottom-color: #006b2c; /* primary */
+            background-color: #dce9ff; /* surface-container-high */
+        }
+        .custom-shadow {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface shadow-sm w-full top-0 sticky z-50 flex justify-between items-center px-margin-mobile h-touch-target-min">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">inventory_2</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Add Product</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cloud_done</span>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 max-w-2xl mx-auto">
+<!-- Content Canvas -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 custom-shadow">
+<form class="space-y-6" id="addProductForm">
+<!-- Product Identity Section -->
+<div class="space-y-4">
+<h2 class="font-title-md text-title-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">label</span>
+                        General Information
+                    </h2>
+<!-- Product Name -->
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Product Name</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-outline-variant" placeholder="e.g. Organic Almond Milk" required="" type="text"/>
+</div>
+<!-- Barcode -->
+<div class="flex gap-2">
+<div class="filled-input-container p-3 flex-grow group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Barcode</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-outline-variant" placeholder="Scan or enter code" type="text"/>
+</div>
+<button class="bg-secondary-container text-on-secondary-container rounded-xl w-14 h-14 flex items-center justify-center active:scale-95 transition-transform hover:bg-secondary-fixed-dim" type="button">
+<span class="material-symbols-outlined">barcode_scanner</span>
+</button>
+</div>
+</div>
+<!-- Categorization -->
+<div class="grid grid-cols-2 gap-4">
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Category</label>
+<select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface">
+<option>Beverages</option>
+<option>Dairy</option>
+<option>Bakery</option>
+<option>Produce</option>
+<option>Dry Goods</option>
+</select>
+</div>
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Unit</label>
+<select class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface">
+<option>Piece (pcs)</option>
+<option>Kilogram (kg)</option>
+<option>Liter (L)</option>
+<option>Box</option>
+</select>
+</div>
+</div>
+<!-- Pricing Section -->
+<div class="space-y-4 pt-2">
+<h2 class="font-title-md text-title-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">payments</span>
+                        Pricing &amp; Inventory
+                    </h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Cost Price ($)</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface" placeholder="0.00" step="0.01" type="number"/>
+</div>
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Selling Price ($)</label>
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</div>
+<!-- Low Stock Threshold -->
+<div class="filled-input-container p-3 group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant group-focus-within:text-primary mb-1">Low Stock Threshold</label>
+<div class="flex items-center">
+<input class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md font-body-md text-on-surface" type="number" value="10"/>
+<span class="material-symbols-outlined text-error" style="font-size: 20px;">warning</span>
+</div>
+</div>
+</div>
+<!-- Visual Asset / Placeholder -->
+<div class="relative w-full h-40 rounded-xl overflow-hidden mt-4 bg-surface-container">
+<div class="bg-cover bg-center w-full h-full opacity-60 grayscale-[20%]" data-alt="A clean, top-down product photography shot of various retail items like almond milk, organic cereal, and fresh produce arranged on a marble surface. The lighting is bright and airy with high-key whites and soft emerald green accents. Professional, minimalist aesthetic for a high-end inventory management software application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTApv23Z-CYnqNZ1Ljaabtr2yhO5NriKOBvqyNFnMW5E80axB5ZrBfrRv4KVf8nRsXQBV0A4r59aOH4IYHYQqAgP43L8tAHGp48y7i81sPCwTKtXeGVfXLGcuN8r4ClDaZgZ4FD0AEftgL0VhKbKXeKmBeJ_ePMOpf43QkbOsuRfbr6CGqVd9geD9bMeMmqoJIdP3FJLjmLzuUSUJXV7MjykmsJQFobe0tEng_AL2jDZyuYj0tDzGa')"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center bg-black/10">
+<span class="material-symbols-outlined text-on-surface mb-1" style="font-size: 32px;">add_a_photo</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Upload Product Photo</span>
+</div>
+</div>
+<!-- Spacer for FAB/Footer -->
+<div class="h-10"></div>
+</form>
+</div>
+</main>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-surface/80 backdrop-blur-md z-40">
+<button class="w-full h-touch-target-min bg-primary text-on-primary rounded-xl font-title-md text-title-md flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all hover:bg-primary-container" form="addProductForm" type="submit">
+<span class="material-symbols-outlined">save</span>
+            Save Product
+        </button>
+</div>
+<!-- Bottom Navigation Bar (Hidden on this transactional task-focused screen as per mandate) -->
+<!-- Suppressed: Relevance Check: Task-Focused with "Back" implied context -->
+<script>
+        // Micro-interactions for form feedback
+        document.getElementById('addProductForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            // Visual success state
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Saving...`;
+            btn.classList.add('opacity-80', 'pointer-events-none');
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Success`;
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-primary-container');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.classList.remove('opacity-80', 'pointer-events-none', 'bg-primary-container');
+                    btn.classList.add('bg-primary');
+                }, 2000);
+            }, 1200);
+        });
+
+        // Offline mode indicator logic simulation
+        window.addEventListener('online', updateConnectivity);
+        window.addEventListener('offline', updateConnectivity);
+
+        function updateConnectivity() {
+            const icon = document.querySelector('header .material-symbols-outlined:last-child');
+            if (navigator.onLine) {
+                icon.textContent = 'cloud_done';
+                icon.className = 'material-symbols-outlined text-primary';
+            } else {
+                icon.textContent = 'cloud_off';
+                icon.className = 'material-symbols-outlined text-outline';
+            }
+        }
+    </script>
+</body></html>
